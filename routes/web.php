@@ -23,3 +23,6 @@ Route::get('/', 'HomeController@index')->name('home');
 //Category
 Route::post('/add-category', 'CategoryController@add_category')->name('add.category');
 Route::get('/category', 'CategoryController@all_category');
+Route::get('/category/{id}', 'CategoryController@delete_category');
+Route::get('/editcategory/{id}', 'CategoryController@edit_category');
+Route::post('/updatecategory/{id}', 'CategoryController@update_category');

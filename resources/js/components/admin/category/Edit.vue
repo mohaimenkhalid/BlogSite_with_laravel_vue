@@ -8,7 +8,7 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Add New Category</h3>
+                <h3 class="card-title">Update Category</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -24,7 +24,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" @click.prevent="addCategory()">Save</button>
+                  <button type="submit" class="btn btn-primary" @click.prevent="updateCategory()" >Update</button>
                 </div>
               </form>
             </div>
@@ -39,29 +39,44 @@
 
 <script>
 export default{
-	name: 'New',
+	name: 'Edit',
 	data(){
 		return{
 
 			form: new Form({
 	        category_name: '',
-     		})
+     		}),
+
+     		category_id: 0,
 		}
 	},
 
 	mounted(){
-
+		this.category_id = this.$route.params.categoryid;
+		this.EditCategory();
+		console.log(this.category_id);
 	},
 
 	methods: {
-		addCategory(){
-			 // Submit the form via a POST request
-     			 this.form.post('/add-category')
+		EditCategory(){
+
+     		this.form.get('/editcategory/' + this.category_id )
         		.then((response)=>{
-              this.form.category_name = "";
+        			this.form.category_name = response.data.category;
+        		})
+        		.catch(()=>{
+
+        		})
+		},
+
+		updateCategory(){
+			 // Submit the form via a POST request
+     			 this.form.post('/updatecategory/'+ this.category_id )
+        		.then((response)=>{
+        		this.$router.push('/category-list');
         			Toast.fire({
 					     type: 'success',
-					      title: 'Category added successfully!!'
+					      title: 'Category Updated successfully!!'
 					     })
         		})
         		.catch(()=>{

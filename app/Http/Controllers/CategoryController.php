@@ -28,4 +28,32 @@ class CategoryController extends Controller
         ], 200);
 
     }
+
+    public function delete_category($id)
+    {
+        $category = Category::find($id);
+        $category->delete();
+    }
+
+    public function edit_category($id)
+    {
+        $category = Category::find($id);
+        $category = $category->name;
+
+        return response()->json([
+            'category' => $category
+        ], 200);
+    }
+
+    public function update_category(Request $request, $id)
+    {
+        $this->validate($request, [
+            'category_name' => 'required|min:2|max:50',
+        ]);
+        
+        $category = Category::find($id);
+        $category->name = $request->category_name;
+        $category->save();
+        
+    }
 }

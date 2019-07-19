@@ -43,17 +43,10 @@ const Toast = Swal.mixin({
   timer: 3000
 });
 
-Vue.Toast = Toast;
+window.Toast = Toast;
 
-/*..............Moment js........................*/
-import moment from 'moment'
-
-Vue.filter('timeformate', arg=>{
-  return moment(arg).format("MMMM Do YYYY");
-
-})
-
-
+//moment js
+import {filter} from './filter'
 
 
 const app = new Vue({
