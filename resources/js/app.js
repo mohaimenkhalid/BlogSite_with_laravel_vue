@@ -7,9 +7,9 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 import storeData from './store/index'
 
-const store = new Vuex.Store({
+const store = new Vuex.Store(
   storeData
-})
+)
 
 /*............vue router.............*/
 import VueRouter from 'vue-router'
@@ -20,7 +20,7 @@ import {routes} from './routes'
 
 const router = new VueRouter({
   routes, // short for `routes: routes`
-  mode: 'history'
+  mode: 'hash'
 })
 
 /*.............main vue................*/
@@ -44,6 +44,14 @@ const Toast = Swal.mixin({
 });
 
 Vue.Toast = Toast;
+
+/*..............Moment js........................*/
+import moment from 'moment'
+
+Vue.filter('timeformate', arg=>{
+  return moment(arg).format("MMMM Do YYYY");
+
+})
 
 
 

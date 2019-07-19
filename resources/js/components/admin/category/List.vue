@@ -20,15 +20,15 @@
                 <tr>
                   <th>S/L</th>
                   <th>Category Name</th>
+                  <th>Date</th>
                   <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0
-                  </td>
+                <tr v-for="(category, index) in getCategory">
+                  <td>{{ index+1 }}</td>
+                  <td>{{ category.name }}</td>
+                  <td>{{ category.created_at | timeformate}}</td>
                   <td>
                   	<a href="">Edit</a>
                   	<a href="">Delete</a>
@@ -52,6 +52,27 @@
 
 <script>
 export default{
-	name: 'List'
+	name: 'List',
+
+  data(){
+    return {
+
+    } 
+  },
+
+  mounted(){
+    this.$store.dispatch("allCategory");
+  },
+
+  methods:{
+
+  },
+
+  computed: {
+    getCategory(){
+       return this.$store.getters.getCategory;
+    }
+
+  }
 }
 </script>
