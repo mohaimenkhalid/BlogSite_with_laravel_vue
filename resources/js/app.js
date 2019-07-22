@@ -48,6 +48,15 @@ window.Toast = Toast;
 //moment js
 import {filter} from './filter'
 
+//markdown text editor
+
+import 'v-markdown-editor/dist/index.css';
+import Editor from 'v-markdown-editor'
+// global register
+Vue.use(Editor);
+
+
+
 
 const app = new Vue({
     el: '#app',

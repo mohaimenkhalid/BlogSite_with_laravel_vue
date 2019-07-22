@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>AdminLTE 3 | Blank Page</title>
+  <title>Blog VueJs</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -51,14 +51,13 @@
     <!-- Sidebar -->
     <div class="sidebar">
      
-
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <router-link to="/home" class="nav-link">
+            <router-link to="/" class="nav-link">
               <i class="nav-icon fa fa-dashboard"></i>
               <p>
                 Dashboard
@@ -77,7 +76,7 @@
           </li>
 
            <li class="nav-item">
-            <router-link to="/post" class="nav-link">
+            <router-link to="/post-list" class="nav-link">
               <i class="nav-icon fa fa-th"></i>
               <p>
                 Post

@@ -14,7 +14,7 @@
 	          </div>
 	        </div>
 	        <div class="card-body">
-	          Start creating your amazing application!sfdsfsf
+	          Start creating your amazing application!
 	        </div>
 	        <!-- /.card-body -->
 	        <div class="card-footer">
@@ -31,7 +31,7 @@
 <script>
     export default {
         mounted() {
-            console.log('Component mounted.')
+           
         }
     }
 </script>

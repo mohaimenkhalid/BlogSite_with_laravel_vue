@@ -1,19 +1,28 @@
 export default{
 
 	state: {
-	    category: []
+	    category: [],
+	    post: []
 	  },
 
 	getters:{
 
 		getCategory:state=>{
 			return state.category;
-		}
+		},
+
+		getAllPost:state=>{
+			return state.post;
+		},
 
 	  },
 	mutations: {
 	    setcategories(state, payload){
 	    	state.category = payload;
+	    },
+
+	    setposts(state, payload){
+	    	state.post = payload;
 	    }
 	  },
 	actions:{
@@ -23,7 +32,14 @@ export default{
 			.then((response)=>{
 				 context.commit('setcategories', response.data.categories);
 			});
-		}
+		},
+
+		getallpost(context){
+			axios.get('/post')
+			.then(response=>{
+				context.commit('setposts', response.data.posts);
+			});
+		},
 
 	  }
 }
