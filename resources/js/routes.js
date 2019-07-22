@@ -9,10 +9,15 @@ import PostList from './components/admin/post/List.vue'
 import AddPost from './components/admin/post/New.vue'
 import EditPost from './components/admin/post/Edit.vue'
 
+//Blog..
+import PublicHome from './components/public/PublicHome.vue'
+import BlogPost from './components/public/blog/BlogPost.vue'
+
 
 export const routes = [
+//Admin routes....
   { 
-  	path: '/',
+  	path: '/home',
     component: AdminHome
   },
 
@@ -47,6 +52,24 @@ export const routes = [
     path: '/edit-post/:postid',
     component: EditPost
   },
+
+  //Blog Routes....
+
+  {
+    path: '/',
+    component: PublicHome
+  },
+
+  {
+    path: '/blog',
+    component: BlogPost
+  },
+
+
+
+
+
+
 
   
    

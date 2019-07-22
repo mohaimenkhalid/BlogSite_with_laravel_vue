@@ -25,6 +25,7 @@ const router = new VueRouter({
 
 /*.............main vue................*/
 Vue.component('admin-master', require('./components/admin/AdminMaster.vue').default);
+Vue.component('public-master', require('./components/public/PublicHome.vue').default);
 
 /*.............V-form..................*/
 import { Form, HasError, AlertError } from 'vform'
