@@ -93,18 +93,7 @@
                    <li>
                        <router-link to="/"> Home</router-link>
                     </li>
-                   
-                    <li class="dropdown">
-                      <a href="#">Pages <i class="icon-angle-down"></i></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="about.html">About us</a></li>
-                        <li><a href="pricingbox.html">Pricing boxes</a></li>
-                        <li><a href="testimonials.html">Testimonials</a></li>
-                        <li><a href="404.html">404</a></li>
-                      </ul>
-                    </li>
-                    
-                   
+  
                     <li>
                        <router-link to="/blog"> Blog</router-link>
                     </li>

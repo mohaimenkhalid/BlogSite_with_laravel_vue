@@ -5,42 +5,26 @@
             <aside class="right-sidebar">
               <div class="widget">
                 <form class="form-search">
-                  <input placeholder="Type something" type="text" class="input-medium search-query">
-                  <button type="submit" class="btn btn-square btn-theme">Search</button>
+                  <input placeholder="Type something" type="text" class="input-medium search-query" v-model="keyword" @keyup="RealSearch">
+                  <button type="submit" class="btn btn-square btn-theme" @click.prevent="RealSearch">Search</button>
                 </form>
               </div>
               <div class="widget">
                 <h5 class="widgetheading">Categories</h5>
                 <ul class="cat">
-                  <li><i class="icon-angle-right"></i><a href="#">Web design</a><span> (20)</span></li>
-                  <li><i class="icon-angle-right"></i><a href="#">Online business</a><span> (11)</span></li>
-                  <li><i class="icon-angle-right"></i><a href="#">Marketing strategy</a><span> (9)</span></li>
-                  <li><i class="icon-angle-right"></i><a href="#">Technology</a><span> (12)</span></li>
-                  <li><i class="icon-angle-right"></i><a href="#">About finance</a><span> (18)</span></li>
+                  <li v-for="category in allcategories"><i class="icon-angle-right"></i><router-link :to="'/category/'+ category.id">{{ category.name }}</router-link><span> (20)</span></li>
+                  
                 </ul>
               </div>
               <div class="widget">
                 <h5 class="widgetheading">Latest posts</h5>
                 <ul class="recent">
-                  <li>
-                    <img src="img/dummies/blog/65x65/thumb1.jpg" class="pull-left" alt="" />
-                    <h6><a href="#">Lorem ipsum dolor sit</a></h6>
+                  
+                  <li v-for="(post, index) in getblogPost" v-if="index<5">
+                    <a href="#"><img :src="'uploadimage/'+ post.photo" width="100" height="100" class="pull-left" alt="" /></a>
+                    <h6><router-link :to="'/blog/'+ post.id">{{ post.title | shortlength(40, '...') }}</router-link></h6>
                     <p>
-                      Mazim alienum appellantur eu cu ullum officiis pro pri
-                    </p>
-                  </li>
-                  <li>
-                    <a href="#"><img src="img/dummies/blog/65x65/thumb2.jpg" class="pull-left" alt="" /></a>
-                    <h6><a href="#">Maiorum ponderum eum</a></h6>
-                    <p>
-                      Mazim alienum appellantur eu cu ullum officiis pro pri
-                    </p>
-                  </li>
-                  <li>
-                    <a href="#"><img src="img/dummies/blog/65x65/thumb3.jpg" class="pull-left" alt="" /></a>
-                    <h6><a href="#">Et mei iusto dolorum</a></h6>
-                    <p>
-                      Mazim alienum appellantur eu cu ullum officiis pro pri
+                      {{ post.description | shortlength(100, '...')}}
                     </p>
                   </li>
                 </ul>
@@ -63,6 +47,40 @@
 
 <script>
 	export default{
+      name: 'blogsidebar',
 
-	}
+      data(){
+        return{
+
+          keyword: ''
+
+        }
+      },
+
+      mounted(){
+          this.$store.dispatch("allcategories");
+          this.$store.dispatch("getblogpost");
+      },
+
+      computed:{
+        allcategories(){
+          return this.$store.getters.getallcategories;
+        },
+
+        getblogPost(){
+        return this.$store.getters.getblogPost;
+      }
+         
+      },
+
+      methods:{
+
+        RealSearch(){
+           this.$store.dispatch("searchPost", this.keyword);
+        }
+
+      }
+
+        }
+	
 </script>

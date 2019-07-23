@@ -6,7 +6,7 @@
         <div class="row">
           <div class="span4">
             <div class="inner-heading">
-              <h2>Blog left sidebar</h2>
+              <h2>Blog left sidebar 11</h2>
             </div>
           </div>
           <div class="span8">
@@ -25,7 +25,7 @@
           <div class="span8">
 
 
-            <article v-for=" post in getblogPost">
+            <article v-for="post in getcategoryposts">
               <div class="row">
                 <div class="span8">
                   <div class="post-image">
@@ -75,26 +75,37 @@ import Blogsidebar from "./BlogSidebar.vue";
   export default{
     data(){
       return{
-
+        categoryid: 0,
       }
 
     },
 
     mounted(){
 
-      this.$store.dispatch("getblogpost");
+      this.categoryposts();
     },
 
     computed:{
 
-       getblogPost(){
-        return this.$store.getters.getblogPost;
+       getcategoryposts(){
+        return this.$store.getters.getcategorypost;
       }
-      },
+    },
 
     methods:{
 
-      },
+      categoryposts(){
+        this.categoryid = this.$route.params.categoryid;
+        this.$store.dispatch("getcategoryblogpost", this.categoryid);
+      }
+
+    },
+
+    watch:{
+        $route(to, form){
+           this.categoryposts();
+        }
+    },
 
     components:{
       Blogsidebar

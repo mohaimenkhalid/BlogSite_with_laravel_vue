@@ -12,6 +12,8 @@ import EditPost from './components/admin/post/Edit.vue'
 //Blog..
 import PublicHome from './components/public/PublicHome.vue'
 import BlogPost from './components/public/blog/BlogPost.vue'
+import SingleBlog from './components/public/blog/SingleBlog.vue'
+import CategoryBlogPost from './components/public/blog/CategoryBlogPost.vue'
 
 
 export const routes = [
@@ -65,12 +67,14 @@ export const routes = [
     component: BlogPost
   },
 
+  {
+    path: '/blog/:postid',
+    component: SingleBlog
+  },
 
-
-
-
-
-
-  
-   
+  {
+    path: '/category/:categoryid',
+    component: CategoryBlogPost
+  },
+ 
 ]

@@ -2,7 +2,11 @@ export default{
 
 	state: {
 	    category: [],
-	    post: []
+	    post: [],
+	    blogpost: [],
+	    singleblogpost:[],
+	    allcategories:[],
+	    categorypost: []
 	  },
 
 	getters:{
@@ -15,6 +19,23 @@ export default{
 			return state.post;
 		},
 
+		getblogPost:state=>{
+			return state.blogpost;
+		},
+
+		getsingleblogPost:state=>{
+			return state.singleblogpost;
+		},
+
+		getallcategories:state=>{
+			return state.allcategories;
+		},
+
+		getcategorypost:state=>{
+			return state.categorypost;
+		}
+
+
 	  },
 	mutations: {
 	    setcategories(state, payload){
@@ -23,8 +44,29 @@ export default{
 
 	    setposts(state, payload){
 	    	state.post = payload;
+	    },
+
+	     setblogpost(state, payload){
+	    	state.blogpost = payload;
+	    },
+
+	    setsingleblogpost(state, payload){
+	    	state.singleblogpost = payload;
+	    },
+
+	     setallcategories(state, payload){
+	    	state.allcategories = payload;
+	    },
+	    setcategorypost(state, payload){
+	    	state.categorypost = payload;
+	    },
+
+	    setSearchPost(state, payload){
+	    	state.blogpost = payload;
 	    }
+
 	  },
+
 	actions:{
 
 		allCategory(context){
@@ -40,6 +82,42 @@ export default{
 				context.commit('setposts', response.data.posts);
 			});
 		},
+
+		getblogpost(context){
+			axios.get('/blogpost')
+			.then(response=>{
+				context.commit('setblogpost', response.data.blogposts);
+			});
+		},
+
+		getPostById(context, payload){
+			axios.get('/singlepost/'+ payload)
+			.then(response=>{
+				context.commit('setsingleblogpost', response.data.blogpost);
+			});
+		},
+
+		allcategories(context){
+			axios.get('/categories')
+			.then((response)=>{
+				 context.commit('setallcategories', response.data.allcategories);
+			});
+		},
+
+		getcategoryblogpost(context, payload){
+			axios.get('/categorypost/'+ payload)
+			.then(response=>{
+				context.commit('setcategorypost', response.data.categoryposts);
+			});
+		},
+
+		searchPost(context, payload){
+			axios.get('/search?query='+ payload)
+			.then(response=>{
+				context.commit('setSearchPost', response.data.posts);
+			});
+		},
+
 
 	  }
 }
